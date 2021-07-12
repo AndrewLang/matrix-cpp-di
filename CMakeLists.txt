@@ -1,42 +1,35 @@
-
+﻿# CMakeList.txt : Top-level CMake project file, do global configuration
+# and include sub-projects here.
+#
 cmake_minimum_required (VERSION 3.12)
+project (matrix-light-solution)
 
-include(common.cmake)
+set(CMAKE_CXX_STANDARD 17)
 
-if(WIN32)
-	#[[
-		Export all symbold on windows
-		see https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/
-	]]   
-  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)   
-endif(WIN32)
+add_definitions(-D_UNICODE -DUNICODE)
+set(CMAKE_OBJECT_PATH_MAX 512)
+enable_testing()
 
-
-include_directories(
-    
-)
+# PrecompiledHeader.cmake from https://github.com/larsch/cmake-precompiled-header
+include(./cmake/PrecompiledHeader.cmake)
 
 
-project(matrix-light VERSION 0.0.1 )
-
-set(DEFAULT_BUILD_TYPE "Release")
-
-
-# add library definition
-add_library( ${PROJECT_NAME} SHARED ${SourceFiles} ${HeaderFiles})
-
-add_definitions(-DEXPMODULE)
+#[[ ]]
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
 
-add_precompiled_header(${PROJECT_NAME} pch.h SOURCE_CXX pch.cpp FORCEINCLUDE)
-
-# 
-target_include_directories(${PROJECT_NAME} PUBLIC  ${PROJECT_SOURCE_DIR}/include )
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 
-set_target_properties( ${PROJECT_NAME} PROPERTIES 
-	VERSION ${PROJECT_VERSION}
-	PUBLIC_HEADER "${HeaderFiles}"
-	OUTPUT_NAME "pxi.resource.manager.common"
-)
+if(CMAKE_COMPILER_IS_GNUCXX)
+    add_definitions(-std=gnu++0x)
+endif()
+
+
+add_subdirectory ("src")
+add_subdirectory ("tests")
+
+
 
