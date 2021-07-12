@@ -15,7 +15,7 @@ public:
 	string folder();
 	string notExistsFolder();
 	string rootFolder();
-	string getPxisaFolder();
+	string getIniFileFolder();
 	string getLockFile();
 
 	string getFilePath(string name);

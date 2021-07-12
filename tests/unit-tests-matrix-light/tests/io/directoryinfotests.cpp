@@ -127,7 +127,7 @@ namespace Matrix
 	TEST(DirectoryInfoTests, EnumerateFilesWithFilter) {
 		TestFiles files;
 
-		DirectoryInfo dir(files.getPxisaFolder());
+		DirectoryInfo dir(files.getIniFileFolder());
 
 		auto iniFiles = dir.enumerateFiles(".ini");
 

@@ -28,12 +28,12 @@ namespace Matrix
 	TEST(FileStreamTests, ConstructorWrite) {
 		TestFiles files;
 
-		FileStream stream(files.getSimulate(), FileMode::Open, FileAccess::Write);
+		FileStream stream(files.getConfiguration(), FileMode::Open, FileAccess::Write);
 
 		ASSERT_TRUE(stream.canWrite());
 		ASSERT_FALSE(stream.canRead());
 		ASSERT_EQ(-1, stream.position());
-		ASSERT_EQ(files.getSimulate(), stream.getPath());
+		ASSERT_EQ(files.getConfiguration(), stream.getPath());
 
 		stream.close();
 	}
@@ -41,12 +41,12 @@ namespace Matrix
 	TEST(FileStreamTests, ConstructorReadWrite) {
 		TestFiles files;
 
-		FileStream stream(files.getSimulate(), FileMode::Open, FileAccess::ReadWrite);
+		FileStream stream(files.getConfiguration(), FileMode::Open, FileAccess::ReadWrite);
 
 		ASSERT_TRUE(stream.canWrite());
 		ASSERT_TRUE(stream.canRead());
 		ASSERT_EQ(-1, stream.position());
-		ASSERT_EQ(files.getSimulate(), stream.getPath());
+		ASSERT_EQ(files.getConfiguration(), stream.getPath());
 
 		stream.close();
 	}
@@ -54,7 +54,7 @@ namespace Matrix
 	TEST(FileStreamTests, FileLength) {
 		TestFiles files;
 
-		FileStream stream(files.getSimulate());
+		FileStream stream(files.getConfiguration());
 		stream.open();
 
 		ASSERT_TRUE(stream.length() > 0);
@@ -65,7 +65,7 @@ namespace Matrix
 	TEST(FileStreamTests, Seek) {
 		TestFiles files;
 
-		FileStream stream(files.getSimulate());
+		FileStream stream(files.getConfiguration());
 		stream.open();
 
 		ASSERT_EQ(0, stream.position());
@@ -107,7 +107,7 @@ namespace Matrix
 
 		VsOutput::writeWithName("First line", content);
 
-		ASSERT_EQ(content, "[ResourceManager]");
+		ASSERT_EQ(content, "[Something]");
 	}
 
 	TEST(FileStreamTests, Read) {
@@ -117,7 +117,7 @@ namespace Matrix
 
 		stream->open();
 
-		string expected = "[ResourceManager]";
+		string expected = "[Something]";
 		long length = static_cast<long>(expected.length());
 
 		char* buffer = new char[length];
@@ -140,7 +140,7 @@ namespace Matrix
 		FileStream streamWrite(path, FileMode::OpenOrCreate, FileAccess::Write);
 		streamWrite.open();
 
-		string expected = "[ResourceManager]";
+		string expected = "[Something]";
 		streamWrite.write(expected).close();
 
 		string actual = "";
@@ -162,7 +162,7 @@ namespace Matrix
 		FileStream streamWrite(path, FileMode::OpenOrCreate, FileAccess::Write);
 		streamWrite.open();
 
-		string expected = "[ResourceManager]";
+		string expected = "[Something]";
 		streamWrite.writeLine(expected).close();
 
 		string actual = "";
@@ -184,7 +184,7 @@ namespace Matrix
 		FileStream streamWrite(path, FileMode::OpenOrCreate, FileAccess::Write);
 		streamWrite.open();
 
-		string expected = "[ResourceManager]";
+		string expected = "[Something]";
 		long length = static_cast<long>(expected.length());
 
 		char* value = const_cast<char*>(expected.c_str());

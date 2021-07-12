@@ -17,3 +17,13 @@ double Rectangle::area()
 {
 	return width * height;
 }
+
+void Rectangle::addChild(Rectangle rect)
+{
+    mChildren.emplace_back(rect);
+}
+
+std::vector<Rectangle> Rectangle::children() const
+{
+    return mChildren;
+}

@@ -107,13 +107,21 @@ namespace Matrix
 	}
 
 	TEST(VectorExtensionsTests, SelectAll) {
-		Rectangle rect1;		
+		Rectangle rect1;	
+        rect1.addChild(Rectangle());
+        rect1.addChild(Rectangle());
+        rect1.addChild(Rectangle());
+
         Rectangle rect2;
-		
+        rect2.addChild(Rectangle());
+        rect2.addChild(Rectangle());
+        rect2.addChild(Rectangle());
 
-		vector<Rectangle> drivers = { rect1, rect2 };
+		vector<Rectangle> rects = { rect1, rect2 };
 
-		
+        auto children = Vectors::selectAll<Rectangle, Rectangle>(rects, [](Rectangle rect) { return rect.children(); });
+
+        EXPECT_EQ(6, children.size());
 	}
 
 	TEST(VectorExtensionsTests, Range) {

@@ -11,7 +11,7 @@ namespace Matrix
 	std::string BlankAppPath = "./blank-app";
 #endif
 
-	TEST(ProcessTests, Start) {
+	TEST(ProcessTests, DISABLED_Start) {
 		Process process (BlankAppPath); 
 
 		ASSERT_TRUE(process.isRunning());
@@ -21,7 +21,7 @@ namespace Matrix
 		process.terminate();
 	}
 
-	TEST(ProcessTests, StartWithArgs) {
+	TEST(ProcessTests, DISABLED_StartWithArgs) {
 		Process process(BlankAppPath, "500");
 
 		ASSERT_TRUE(process.isRunning());
@@ -31,7 +31,7 @@ namespace Matrix
 		process.terminate();
 	}
 
-	TEST(ProcessTests, StartWithMultiArgs) {
+	TEST(ProcessTests, DISABLED_StartWithMultiArgs) {
 		Process process(BlankAppPath, "500 20" );
 
 		ASSERT_TRUE(process.isRunning());
@@ -41,7 +41,7 @@ namespace Matrix
 		process.terminate();
 	}
 
-	TEST(ProcessTests, Wait) {
+	TEST(ProcessTests, DISABLED_Wait) {
 		Process process(BlankAppPath, "500");
 
 		ASSERT_TRUE(process.isRunning());
@@ -54,7 +54,7 @@ namespace Matrix
 		process.terminate();
 	}
 
-	TEST(ProcessTests, WaitExit) {
+	TEST(ProcessTests, DISABLED_WaitExit) {
 		Process process(BlankAppPath, "500");
 
 		ASSERT_TRUE(process.isRunning());
