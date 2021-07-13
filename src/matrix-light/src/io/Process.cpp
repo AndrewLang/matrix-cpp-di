@@ -7,7 +7,8 @@ namespace Matrix
 	using namespace std;
 
 	Process::Process(string fileName, string arguments)
-		: mFileName(fileName), mArguments(arguments)
+		: mFileName(fileName)
+        , mArguments(arguments)
 	{
 		//mInnerProcess = std::make_shared<OsProcess>(mFileName, mArguments);
 	}
