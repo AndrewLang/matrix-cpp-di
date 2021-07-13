@@ -20,10 +20,7 @@ namespace Matrix
 {
 	class StringExtensions
 	{
-	public:
-		//const static int Padding = 25;
-		//const static char PaddingChar = ' ';
-
+	public:		
 		static constexpr const int Padding = 25;
 		static constexpr const char PaddingChar = ' ';
 
@@ -38,7 +35,7 @@ namespace Matrix
 			std::string segment;
 			while (std::getline(stream, segment, delimiter))
 			{
-				result.push_back(segment);
+				result.emplace_back(segment);
 			}
 			return result;
 		}
@@ -74,13 +71,13 @@ namespace Matrix
 				if (pos > 0)
 				{
 					auto part = remain.substr(0, pos);
-					result.push_back(part);
+					result.emplace_back(part);
 
 					remain.erase(0, pos + std::get<1>(posInfo).length());
 				}
 				else 
 				{
-					result.push_back(remain);
+					result.emplace_back(remain);
 				}
 
 			} while (pos > 0);

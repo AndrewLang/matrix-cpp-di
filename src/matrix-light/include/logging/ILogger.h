@@ -1,6 +1,7 @@
 #pragma once
 #include "common/TextFormatter.h"
 #include "common/StringExtensions.h"
+#include "common/ConstStrings.h"
 #include "LogMessageName.h"
 
 #include <string>
@@ -220,7 +221,7 @@ namespace Matrix
 		std::string format(const TKey& text)
 		{
 			std::stringstream stream;
-			stream << text << SPACE;
+			stream << text << ConstStrings::Space;
 			return stream.str();
 		}
 

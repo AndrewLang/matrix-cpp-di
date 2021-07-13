@@ -1,13 +1,14 @@
 #pragma once
-#include "TextFormatter.h"
 
+#include <exception>
+#include <string>
 
 namespace Matrix
 {
-	class BaseException : public std::exception
+	class Exception : public std::exception
 	{
 	public:
-		BaseException();
+		Exception();
 		
 		virtual char const * what() const noexcept;
 

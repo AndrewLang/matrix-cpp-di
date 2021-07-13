@@ -1,4 +1,5 @@
 #include "common/TextFormatter.h"
+#include "common/ConstStrings.h"
 
 namespace Matrix
 {
@@ -9,7 +10,7 @@ namespace Matrix
 	}
 
 	TextFormatter::TextFormatter(std::string separatorString)
-		:separator(separatorString)
+		:mSeparator(separatorString)
 	{
 	}
 }

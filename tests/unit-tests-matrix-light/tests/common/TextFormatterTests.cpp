@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "gtest/gtest.h"
 #include "common/TextFormatter.h"
+#include "common/ConstStrings.h"
 
 namespace Matrix
 {
@@ -17,7 +18,7 @@ namespace Matrix
 		std::string expect = "hello world";
 		auto actual = formatter.format(expect);
 
-		EXPECT_EQ(expect + Matrix::SPACE, actual);
+		EXPECT_EQ(expect + ConstStrings::Space, actual);
 	}
 
 	TEST(TextFormatterTest, FormatMultiple)
@@ -28,6 +29,6 @@ namespace Matrix
 
 		auto actual = formatter.format(expect, expect1);
 
-		EXPECT_EQ(expect + Matrix::SPACE + expect1 + Matrix::SPACE, actual);
+		EXPECT_EQ(expect + ConstStrings::Space + expect1 + ConstStrings::Space, actual);
 	}
 }

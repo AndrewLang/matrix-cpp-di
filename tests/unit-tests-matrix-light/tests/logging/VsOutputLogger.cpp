@@ -2,6 +2,7 @@
 #include "gtest/gtest.h"
 #include "logging/VsOutputLogger.h"
 #include "logging/LogMessageName.h"
+#include "common/ConstStrings.h"
 
 #include <memory>
 

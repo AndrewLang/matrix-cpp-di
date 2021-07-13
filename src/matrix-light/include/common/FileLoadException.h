@@ -1,9 +1,9 @@
 #pragma once
-#include "BaseException.h"
+#include "Exception.h"
 
 namespace Matrix
 {
-	class FileLoadException : public BaseException
+	class FileLoadException : public Exception
 	{
 	public:
 		FileLoadException(const std::string fileName);

@@ -3,20 +3,13 @@
 
 namespace Matrix
 {
-
-	Stopwatch::Stopwatch()
-	{
-	}
-
-	Stopwatch::~Stopwatch()
-	{
-	}
+	using namespace std::chrono;
 
 	Stopwatch & Stopwatch::start()
 	{
 		if (!mIsRunning) 
 		{
-			mStart = std::chrono::high_resolution_clock::now();
+			mStart = high_resolution_clock::now();
 			mIsRunning = true;
 		}
 		return *this;
@@ -26,7 +19,7 @@ namespace Matrix
 	{
 		if (mIsRunning) 
 		{
-			auto now = std::chrono::high_resolution_clock::now();
+			auto now = high_resolution_clock::now();
 
 			mDuration = now - mStart;
 			mIsRunning = false;
@@ -36,20 +29,20 @@ namespace Matrix
 
 	Stopwatch & Stopwatch::reset()
 	{		
-		mDuration = std::chrono::nanoseconds::zero();
+		mDuration = nanoseconds::zero();
 		mIsRunning = false;
 		return *this;
 	}
 
 	long long Stopwatch::elapsed()
 	{
-		auto seconds = std::chrono::duration_cast<std::chrono::seconds>(mDuration);
+		auto seconds = duration_cast<std::chrono::seconds>(mDuration);
 		return seconds.count();
 	}
 
 	long long Stopwatch::elapsedMilliseconds()
 	{
-		auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(mDuration);
+		auto milliseconds = duration_cast<std::chrono::milliseconds>(mDuration);
 		return milliseconds.count();
 	}
 
@@ -62,7 +55,7 @@ namespace Matrix
 	{
 		std::stringstream stream;
 
-		auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(mDuration).count();
+		auto milliseconds = duration_cast<std::chrono::milliseconds>(mDuration).count();
 		long long hour = milliseconds / 3600000;
 		milliseconds -= hour * 3600000;
 

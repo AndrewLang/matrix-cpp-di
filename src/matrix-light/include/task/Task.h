@@ -1,20 +1,13 @@
 #pragma once
+#include "common/Functions.h"
+
 #include <functional>
 #include <string>
 #include <future>
 #include <memory>
 
-
-
-
 namespace Matrix
-{
-	using Action = std::function<void()>;
-
-	template<class... TArgs>
-	using ActionArgs = std::function<void(TArgs&&... args)>;
-		
-		
+{		
 	class Task
 	{
 	public:

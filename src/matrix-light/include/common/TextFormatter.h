@@ -5,23 +5,19 @@
 
 namespace Matrix
 {
-	const static std::string SPACE = " ";
-	const static std::string Empty = "";
-
 	class TextFormatter
 	{
 	public:
 		static TextFormatter& DefaultTextFormatter();
 
-		TextFormatter(std::string separatorString = SPACE);
+		TextFormatter(std::string separatorString = " ");
 		
-		std::string separator = SPACE;
 
 		template< typename TKey >
 		std::string format(const TKey& text)
 		{
 			std::stringstream stream;
-			stream << text << separator;
+			stream << text << mSeparator;
 			return stream.str();
 		}
 
@@ -31,5 +27,8 @@ namespace Matrix
 			return format(first) + format(args...);
 		}
 		
+
+	private :
+		std::string mSeparator;
 	};
 }

@@ -1,11 +1,10 @@
 #pragma once
-#include "MapValueDescriptor.h"
 
 #include <memory>
 #include <map>
 #include <string>
 #include <vector>
-
+#include <any>
 
 namespace Matrix
 {
@@ -15,11 +14,8 @@ namespace Matrix
 	public:
 		template<typename TValue>
 		ObjectMap& add(TKey key, TValue value)
-		{
-			auto descriptor = std::make_shared<MapValueDescritor>();
-			descriptor->value = std::make_shared<TValue>(value);
-			
-			internalMap[key] = descriptor;
+		{			
+			mInternalMap[key] = value;
 
 			return *this;
 		}
@@ -27,13 +23,10 @@ namespace Matrix
 		template<typename TValue>
 		TValue getValue(TKey key, TValue defaultValue = TValue())
 		{
-			auto iterator = internalMap.find(key);
-			if (iterator != internalMap.end())
+			auto iterator = mInternalMap.find(key);
+			if (iterator != mInternalMap.end())
 			{
-				auto descriptor = iterator->second;
-				auto pointer = std::static_pointer_cast<TValue>(descriptor->value);
-
-				return *pointer;
+				return std::any_cast<TValue>(iterator->second);
 			}
 			return defaultValue;
 		}
@@ -46,28 +39,28 @@ namespace Matrix
 
 		std::vector<TKey> keys();
 				
-	private:
-		std::map<TKey, std::shared_ptr<MapValueDescritor>> internalMap;
+	private:		
+		std::map<TKey, std::any> mInternalMap;
 	};
 
 
 	template<class TKey>
 	inline bool ObjectMap<TKey>::contains(TKey key)
 	{
-		auto iterator = internalMap.find(key);
-		return iterator != internalMap.end();
+		auto iterator = mInternalMap.find(key);
+		return iterator != mInternalMap.end();
 	}
 
 	template<class TKey>
 	inline void ObjectMap<TKey>::clear()
 	{
-		internalMap.clear();
+		mInternalMap.clear();
 	}
 
 	template<class TKey>
 	inline int ObjectMap<TKey>::size()
 	{
-		return static_cast<int>(internalMap.size());
+		return static_cast<int>(mInternalMap.size());
 	}
 
 	template<class TKey>
@@ -75,7 +68,7 @@ namespace Matrix
 	{
 		std::vector<TKey> keys;
 
-		for (auto &item : internalMap)
+		for (auto &item : mInternalMap)
 		{			
 			keys.push_back(item.first);
 		}

@@ -1,13 +1,13 @@
 #pragma once
-#include "BaseException.h"
+#include "Exception.h"
 
 namespace Matrix
 {
 
-	class FileNotExistsException : public BaseException
+	class FileNotExistsException : public Exception
 	{
 	public:
-		FileNotExistsException(const std::string& file);
+		FileNotExistsException(const std::string file);
 
 	protected:
 		std::string buildMessage() const override;

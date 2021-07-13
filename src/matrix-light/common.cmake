@@ -5,7 +5,7 @@ SET(HeaderFiles
 	pch.h	
 	
 	include/common/ArgumentNullException.h
-	include/common/BaseException.h
+	include/common/Exception.h
 	include/common/FileLoadException.h
 	include/common/FileNotExistsException.h
 	include/common/Guard.h
@@ -17,6 +17,10 @@ SET(HeaderFiles
 	include/common/StringExtensions.h	
 	include/common/TextFormatter.h
 	include/common/VectorExtensions.h
+	include/common/ConstStrings.h
+
+	include/collections/IEnumerable.h
+	include/collections/IDictionary.h	
 
 	include/configuration/ConfigurationBuilder.h
 	include/configuration/ConfigurationProvider.h
@@ -97,7 +101,7 @@ SET(SourceFiles
 	pch.cpp
 	
 	src/common/ArgumentNullException.cpp
-	src/common/BaseException.cpp
+	src/common/Exception.cpp
 	src/common/FileLoadException.cpp
 	src/common/FileNotExistsException.cpp
 	src/common/Guard.cpp
@@ -105,6 +109,7 @@ SET(SourceFiles
 	src/common/Stopwatch.cpp
 	src/common/StringExtensions.cpp
 	src/common/TextFormatter.cpp
+	src/common/ConstStrings.cpp
 
 	src/configuration/ConfigurationBuilder.cpp
 	src/configuration/ConfigurationProvider.cpp

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Functions.h"
+
 #include <vector>
 #include <algorithm>
 #include <functional>
@@ -10,11 +12,7 @@
 
 namespace Matrix
 {
-	template<typename T>
-	using Predicate = std::function<bool(T)>;
 
-	template<typename T>
-	using ActionT = std::function<void(T)>;
 
 	class VectorExtensions
 	{

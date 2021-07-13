@@ -1,4 +1,5 @@
 #include "common/FileLoadException.h"
+#include "common/TextFormatter.h"
 
 namespace Matrix
 {

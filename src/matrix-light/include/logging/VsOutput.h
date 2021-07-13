@@ -1,6 +1,7 @@
 #pragma once
 #include "common/TextFormatter.h"
 #include "common/StringExtensions.h"
+#include "common/ConstStrings.h"
 
 #if defined(_WIN32)
 #include <Windows.h>
@@ -26,7 +27,7 @@ namespace Matrix
 			TextFormatter formatter;
 			auto message = formatter.format(args...);
 
-			message = StringExtensions::wrapBySquare(StringExtensions::getTimestamp()) + SPACE + message;
+			message = StringExtensions::wrapBySquare(StringExtensions::getTimestamp()) + ConstStrings::Space + message;
 
 			logMessage(message);
 
@@ -37,7 +38,7 @@ namespace Matrix
 		{
 			TextFormatter formatter;
 			auto message = formatter.format(args...);
-			message = StringExtensions::wrapBySquare(StringExtensions::getTimestamp()) + SPACE + message + StringExtensions::NewLine;
+			message = StringExtensions::wrapBySquare(StringExtensions::getTimestamp()) + ConstStrings::Space + message + StringExtensions::NewLine;
 
 			logMessage(message);
 		}
@@ -47,9 +48,9 @@ namespace Matrix
 		{
 			TextFormatter formatter;
 			auto message = StringExtensions::wrapBySquare(StringExtensions::getTimestamp())
-				+ SPACE
+				+ ConstStrings::Space
 				+ StringExtensions::paddingString(name)
-				+ SPACE
+				+ ConstStrings::Space
 				+ formatter.format(args...)
 				+ StringExtensions::NewLine;
 

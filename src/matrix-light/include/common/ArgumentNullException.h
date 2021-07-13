@@ -1,9 +1,9 @@
 #pragma once
-#include "BaseException.h"
+#include "Exception.h"
 
 namespace Matrix
 {
-	class ArgumentNullException : public BaseException
+	class ArgumentNullException : public Exception
 	{
 	public:
 		ArgumentNullException(const std::string argument);

@@ -8,11 +8,7 @@ namespace Matrix
 {
 	class Stopwatch
 	{
-	public:
-		Stopwatch();
-
-		~Stopwatch();
-
+	public:	
 		Stopwatch& start();
 
 		Stopwatch& stop();
