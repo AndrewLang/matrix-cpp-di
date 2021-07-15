@@ -1,39 +1,43 @@
 #pragma once
 
-#include <typeinfo>
 #include <atomic>
 #include <string>
+#include <typeinfo>
 
 namespace Matrix
 {
-	class TypeInfo
-	{
-	public:
-		const std::type_info* rawType;
-		std::string name;	
+class TypeInfo
+{
+public:
+    explicit TypeInfo(const std::type_info* type);
 
-		TypeInfo(const std::type_info* type)
-			: rawType(type)
-			, name(getTypeName())
-		{}
+    std::type_info const& getRawType() const;
 
+    std::string getName() const;
 
-		template<class TKey>
-		static const std::shared_ptr<TypeInfo> From()
-		{
-			return std::make_shared<TypeInfo>(&typeid(TKey));
-		}
+    template <class TKey>
+    static const std::shared_ptr<TypeInfo> From()
+    {
+        return std::make_shared<TypeInfo>(&typeid(TKey));
+    }
 
-		const TypeInfo* operator=(const std::type_info* type)
-		{
-			return new TypeInfo(type);
-		}
+    const TypeInfo* operator=(const std::type_info* type)
+    {
+        return new TypeInfo(type);
+    }
 
-	private:
-		static std::atomic<int> InitialCode;
+    bool operator==(TypeInfo const& info) const
+    {
+        return getRawType() == info.getRawType();
+    }
 
-		std::string getTypeName();
+private:
+    const std::type_info* mRawType;
+    std::string mFullName;
 
-	};
+    static std::atomic<int> InitialCode;
 
-}
+    std::string buildTypeName();
+};
+
+} // namespace Matrix

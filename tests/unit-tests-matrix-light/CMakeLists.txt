@@ -28,6 +28,8 @@ set (HeaderFiles
 	include/Shape.h
 	include/TestFiles.h
 	include/TestServices.h
+	include/IMessageService.h
+	include/MessageService.h
 	
 )
 
@@ -48,6 +50,7 @@ set (SourceFiles
 	src/Shape.cpp
 	src/TestFiles.cpp
 	src/TestServices.cpp
+	src/MessageService.cpp
 		
 	tests/common/ArgumentNullExceptionTests.cpp
 	tests/common/GuardTests.cpp
