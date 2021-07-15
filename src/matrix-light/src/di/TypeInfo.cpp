@@ -25,12 +25,13 @@ std::string TypeInfo::buildTypeName()
 {
     auto name = mRawType->name();
     auto fullName = Strings::replace(name, "::", ".");
+    auto const empty = "";
 
-    fullName = std::regex_replace(fullName, std::regex("(const\\s+|\\s+const)"), std::string());
-    fullName = std::regex_replace(fullName, std::regex("(volatile\\s+|\\s+volatile)"), std::string());
-    fullName = std::regex_replace(fullName, std::regex("(static\\s+|\\s+static)"), std::string());
-    fullName = std::regex_replace(fullName, std::regex("(class\\s+|\\s+class)"), std::string());
-    fullName = std::regex_replace(fullName, std::regex("(struct\\s+|\\s+struct)"), std::string());
+    fullName = std::regex_replace(fullName, std::regex("(const\\s+|\\s+const)"), empty);
+    fullName = std::regex_replace(fullName, std::regex("(volatile\\s+|\\s+volatile)"), empty);
+    fullName = std::regex_replace(fullName, std::regex("(static\\s+|\\s+static)"), empty);
+    fullName = std::regex_replace(fullName, std::regex("(class\\s+|\\s+class)"), empty);
+    fullName = std::regex_replace(fullName, std::regex("(struct\\s+|\\s+struct)"), empty);
 
     return fullName;
 }
